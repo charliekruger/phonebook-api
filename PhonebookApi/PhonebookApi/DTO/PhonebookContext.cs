@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PhonebookApi.DTO
 {
+    /// <summary>
+    /// Database context for phonebook entries and detail
+    /// </summary>
     public class PhonebookContext : DbContext
     {
         public DbSet<PhonebookEntry> PhonebookEntries { get; set; }

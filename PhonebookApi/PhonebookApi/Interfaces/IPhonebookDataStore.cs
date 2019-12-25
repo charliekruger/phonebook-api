@@ -3,6 +3,9 @@ using PhonebookApi.DTO;
 
 namespace PhonebookApi
 {
+    /// <summary>
+    /// Interface to interact with database
+    /// </summary>
     public interface IPhonebookDataStore
     {
         List<PhonebookEntry> GetAll();

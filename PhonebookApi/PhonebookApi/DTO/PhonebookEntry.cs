@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace PhonebookApi.DTO
 {
+    /// <summary>
+    /// Phonebook entry
+    /// </summary>
     public class PhonebookEntry
     {
         public int PhonebookEntryId { get; set; }

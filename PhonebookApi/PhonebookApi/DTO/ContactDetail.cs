@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PhonebookApi.DTO
 {
+    /// <summary>
+    /// Contact detail entry
+    /// </summary>
     public class ContactDetail
     {
         public int ContactDetailId { get; set; }
@@ -15,11 +18,14 @@ namespace PhonebookApi.DTO
         public string Content { get; set; }
     }
 
+    /// <summary>
+    /// Contact detail type
+    /// </summary>
     public enum ContactType
     {
-        [Description(nameof(Number))]
+        [Description("Number")]
         Number, 
-        [Description(nameof(EmailAddress))]
+        [Description("Email Address")]
         EmailAddress
     }
 }

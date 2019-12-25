@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 using PhonebookApi.Controllers;
 using PhonebookApi.DataStore;
@@ -18,8 +19,9 @@ namespace PhonebookApiTests
             var context = new PhonebookContext();
             context.Database.Migrate();
             context.Database.EnsureCreated();
-            
-            _controller = new ContactsController(new PhonebookDataStore(context));
+
+            _controller = new ContactsController(new PhonebookDataStore(context),
+                new Logger<ContactsController>(new LoggerFactory()));
             _controller.CleanDb();
         }
 
@@ -31,19 +33,19 @@ namespace PhonebookApiTests
 
             return items;
         }
-        
+
         private List<PhonebookEntry> InitPhonebookEntries()
         {
             var items = _controller.Get();
 
             if (items.Any()) return items;
-            
+
             AddItemsForTests();
             items = _controller.Get();
 
             return items;
         }
-        
+
         [Test]
         public void AddItems()
         {
@@ -51,16 +53,16 @@ namespace PhonebookApiTests
 
             var addedItems = _controller.Get();
 
-            bool allAdded = true; 
-            
+            bool allAdded = true;
+
             addedItems.ForEach(i =>
             {
                 if (allAdded)
                 {
-                    allAdded = items.Contains(i);    
+                    allAdded = items.Contains(i);
                 }
             });
-            
+
             Assert.IsTrue(allAdded);
         }
 
@@ -82,7 +84,7 @@ namespace PhonebookApiTests
         {
             var newName = "TEST NAME";
             var surname = "TEST SURNAME";
-            
+
             var items = InitPhonebookEntries();
 
             var itemToUpdate = items[0];
@@ -93,7 +95,7 @@ namespace PhonebookApiTests
             _controller.Put(itemToUpdate);
 
             var updatedItem = _controller.Get(itemToUpdate.PhonebookEntryId);
-            
+
             Assert.IsTrue(updatedItem == itemToUpdate);
         }
 
