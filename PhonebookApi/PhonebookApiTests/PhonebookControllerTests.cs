@@ -17,7 +17,7 @@ namespace PhonebookApiTests
         public void Setup()
         {
             var context = new PhonebookContext();
-            context.Database.Migrate();
+//            context.Database.Migrate();
             context.Database.EnsureCreated();
 
             _controller = new ContactsController(new PhonebookDataStore(context),

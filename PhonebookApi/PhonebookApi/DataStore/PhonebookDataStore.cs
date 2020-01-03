@@ -26,7 +26,17 @@ namespace PhonebookApi.DataStore
         /// <returns>List of PhonebookEntry</returns>
         public List<PhonebookEntry> GetAll()
         {
-            return _context.PhonebookEntries.ToList();
+            var items = _context.PhonebookEntries.ToList();
+
+            items.ForEach(i =>
+            {
+                var details = _context.ContactDetails.Where(d => d.PhonebookEntryId == i.PhonebookEntryId).ToList();
+                details.ForEach(d => { d.PhonebookEntry = null; });
+
+                i.ContactDetails = details;
+            });
+
+            return items;
         }
 
         /// <summary>

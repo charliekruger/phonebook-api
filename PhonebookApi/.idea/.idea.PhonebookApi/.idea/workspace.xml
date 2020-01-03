@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51cf480f-b531-47ec-9e4b-9d1a75143592" name="Default Changelist" comment="" />
+    <list default="true" id="51cf480f-b531-47ec-9e4b-9d1a75143592" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,25 +17,27 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9FFE4C48-F313-4A7B-905B-5DA527410F26/31/4b7c27a4/SqliteException.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApi/Migrations/20191213132007_InitialCreate.Designer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PhonebookApi/Migrations/PhonebookContextModelSnapshot.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApi/Migrations/20191213132007_InitialCreate.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BCC104BD-F9C3-43F4-B231-C5ADD68B379F/2f/5716b42f/ActionResult`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApi/DTO/ContactDetail.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApi/DTO/PhonebookEntry.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C674BF98-4604-4F9B-BAE9-942758FE4AA0/24/abd28bb7/HostingEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.local/share/Symbols/src/nunit/nunit/c933a883ea25263ec575a654dae69fa38000edd9/src/NUnitFramework/framework/Internal/Execution/SimpleWorkItemDispatcher.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0E333EDE-6E02-4FAE-8866-604EA87E4B1B/d6/32b85a5f/RelationalDatabaseFacadeExtensions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApi/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/19C2CCA0-B8C1-473C-8397-D1E41F304E2A/3c/c70fe773/ControllerActionInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApi/DTO/PhonebookContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PhonebookApi/Startup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E0B9B60F-4CEC-4670-980B-0976EE4D34EA/37/5c23dd25/ILogger`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2050C92A-D081-4D01-836E-66C4768FC8A5/f3/2fd948e0/List`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/19C2CCA0-B8C1-473C-8397-D1E41F304E2A/b1/461f4b33/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApi/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9FFE4C48-F313-4A7B-905B-5DA527410F26/31/4b7c27a4/SqliteException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApi/DTO/ContactDetail.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApi/DTO/PhonebookContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BCC104BD-F9C3-43F4-B231-C5ADD68B379F/2f/5716b42f/ActionResult`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApi/DTO/PhonebookEntry.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApi/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0E333EDE-6E02-4FAE-8866-604EA87E4B1B/d6/32b85a5f/RelationalDatabaseFacadeExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApi/Migrations/20191213132007_InitialCreate.Designer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E0B9B60F-4CEC-4670-980B-0976EE4D34EA/37/5c23dd25/ILogger`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApi/Migrations/20191213132007_InitialCreate.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -46,15 +53,16 @@
         <option value="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookContext.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/DTO/PhonebookContext.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" />
-        <option value="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" />
         <option value="$PROJECT_DIR$/PhonebookApiTests/UnitTest1.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Startup.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" />
         <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1Uq0TryRe1gFHCDyCtIsiig4DuN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
@@ -141,6 +149,19 @@
           <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs</url>
+          <line>38</line>
+          <properties documentPath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" initialLine="38">
+            <startOffsets>
+              <option value="1080" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1093" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
