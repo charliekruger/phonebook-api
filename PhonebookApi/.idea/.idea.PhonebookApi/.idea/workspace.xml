@@ -25,7 +25,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/19C2CCA0-B8C1-473C-8397-D1E41F304E2A/3c/c70fe773/ControllerActionInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2050C92A-D081-4D01-836E-66C4768FC8A5/f3/2fd948e0/List`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2050C92A-D081-4D01-836E-66C4768FC8A5/f3/2fd948e0/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/19C2CCA0-B8C1-473C-8397-D1E41F304E2A/b1/461f4b33/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PhonebookApi/Program.cs" root0="FORCE_HIGHLIGHTING" />
@@ -56,8 +56,8 @@
         <option value="$PROJECT_DIR$/PhonebookApiTests/UnitTest1.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Startup.cs" />
         <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" />
-        <option value="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" />
       </list>
     </option>
@@ -150,6 +150,19 @@
           <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs</url>
+          <line>73</line>
+          <properties documentPath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" initialLine="73">
+            <startOffsets>
+              <option value="2102" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2138" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

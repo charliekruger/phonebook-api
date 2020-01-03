@@ -47,8 +47,8 @@ namespace PhonebookApi.Controllers
         [Microsoft.AspNetCore.Mvc.HttpPut]
         public ActionResult Put([Microsoft.AspNetCore.Mvc.FromBody] PhonebookEntry entry)
         {
-            _dataStore.Put(entry);
-            return new OkResult();
+            var result = _dataStore.Put(entry);
+            return new OkObjectResult(result);
         }    
 
         /// <summary>

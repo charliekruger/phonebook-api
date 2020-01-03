@@ -46,7 +46,13 @@ namespace PhonebookApi.DataStore
         /// <returns>PhonebookEntry</returns>
         public PhonebookEntry Get(int id)
         {
-            return _context.PhonebookEntries.Find(id);
+            var item = _context.PhonebookEntries.Find(id);
+
+            var details = _context.ContactDetails.Where(d => d.PhonebookEntryId == item.PhonebookEntryId).ToList();
+            details.ForEach(d => { d.PhonebookEntry = null; });
+            item.ContactDetails = details;
+
+            return item;
         }
 
         /// <summary>
@@ -63,10 +69,36 @@ namespace PhonebookApi.DataStore
         /// Update phonebook entry
         /// </summary>
         /// <param name="entry"></param>
-        public void Put(PhonebookEntry entry)
+        public PhonebookEntry Put(PhonebookEntry entry)
         {
-            _context.Update(entry);
+            var result = _context.Update(entry);
+
+            var detailsForEntry =
+                _context.ContactDetails.Where(c => c.PhonebookEntryId == result.Entity.PhonebookEntryId);
+            var ids = result.Entity.ContactDetails.Select(d => d.ContactDetailId).ToList();
+            if (!ids.Any())
+            {
+                _context.ContactDetails.RemoveRange(detailsForEntry);
+                Done();
+            }
+            else
+            {
+                foreach (var d in detailsForEntry)
+                {
+                    if (ids.Contains(d.ContactDetailId)) continue;
+                    _context.ContactDetails.Remove(d);
+                    Done();
+                }
+            }
+
             Done();
+
+            foreach (var entityContactDetail in result.Entity.ContactDetails)
+            {
+                entityContactDetail.PhonebookEntry = null;
+            }
+
+            return result.Entity;
         }
 
         /// <summary>
@@ -81,7 +113,7 @@ namespace PhonebookApi.DataStore
             {
                 entityContactDetail.PhonebookEntry = null;
             }
-            
+
             return result.Entity;
         }
 
