@@ -19,6 +19,7 @@ namespace PhonebookApi
             Configuration = configuration;
             Container = new UnityContainer();
             RegisterServices();
+            
         }
 
         public static IWebHostEnvironment Environment { get; set; }
