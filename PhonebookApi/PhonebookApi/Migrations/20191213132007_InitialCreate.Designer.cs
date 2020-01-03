@@ -8,7 +8,7 @@ using PhonebookApi.DTO;
 namespace PhonebookApi.Migrations
 {
     [DbContext(typeof(PhonebookContext))]
-    [Migration("20200103151809_InitialCreate")]
+    [Migration("20191213132007_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,13 +23,16 @@ namespace PhonebookApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Number")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("PhonebookEntryId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Type")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ContactDetailId");

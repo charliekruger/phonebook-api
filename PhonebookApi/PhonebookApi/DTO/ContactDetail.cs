@@ -12,8 +12,20 @@ namespace PhonebookApi.DTO
         public int PhonebookEntryId { get; set; }
 
         public PhonebookEntry PhonebookEntry { get; set; }
-
+        
+        public ContactType Type { get; set; }
         public string Description { get; set; }
-        public string Number { get; set; }
+        public string Content { get; set; }
+    }
+
+    /// <summary>
+    /// Contact detail type
+    /// </summary>
+    public enum ContactType
+    {
+        [Description("Number")]
+        Number, 
+        [Description("Email Address")]
+        EmailAddress
     }
 }
