@@ -73,10 +73,16 @@ namespace PhonebookApi.DataStore
         /// Add phonebook entry
         /// </summary>
         /// <param name="entry"></param>
-        public void Post(PhonebookEntry entry)
+        public PhonebookEntry Post(PhonebookEntry entry)
         {
-            _context.PhonebookEntries.Add(entry);
+            var result = _context.PhonebookEntries.Add(entry);
             Done();
+            foreach (var entityContactDetail in result.Entity.ContactDetails)
+            {
+                entityContactDetail.PhonebookEntry = null;
+            }
+            
+            return result.Entity;
         }
 
         /// <summary>

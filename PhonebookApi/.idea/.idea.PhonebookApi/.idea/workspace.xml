@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51cf480f-b531-47ec-9e4b-9d1a75143592" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhonebookApi/phonebook.db" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/phonebook.db" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,11 +53,11 @@
         <option value="$PROJECT_DIR$/PhonebookApi/Program.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookContext.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/DTO/PhonebookContext.cs" />
-        <option value="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" />
         <option value="$PROJECT_DIR$/PhonebookApiTests/UnitTest1.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Startup.cs" />
-        <option value="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" />
         <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" />
       </list>
     </option>
@@ -149,19 +150,6 @@
           <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs</url>
-          <line>38</line>
-          <properties documentPath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" initialLine="38">
-            <startOffsets>
-              <option value="1080" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1093" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>

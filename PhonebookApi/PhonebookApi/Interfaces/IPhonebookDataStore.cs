@@ -12,7 +12,7 @@ namespace PhonebookApi
         PhonebookEntry Get(int id);
         void Delete(PhonebookEntry entry);
         void Put(PhonebookEntry entry);
-        void Post(PhonebookEntry entry);
+        PhonebookEntry Post(PhonebookEntry entry);
         void CleanDb();
     }
 }

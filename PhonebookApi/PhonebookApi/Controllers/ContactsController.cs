@@ -35,8 +35,8 @@ namespace PhonebookApi.Controllers
         [Microsoft.AspNetCore.Mvc.HttpPost]
         public ActionResult Post([Microsoft.AspNetCore.Mvc.FromBody]PhonebookEntry entry)
         {
-            _dataStore.Post(entry);
-            return new OkResult();
+            var result = _dataStore.Post(entry);
+            return new OkObjectResult(result);
         }
 
         /// <summary>
