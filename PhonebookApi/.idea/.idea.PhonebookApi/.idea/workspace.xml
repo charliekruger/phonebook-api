@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51cf480f-b531-47ec-9e4b-9d1a75143592" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PhonebookApi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PhonebookApi/phonebook.db" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/phonebook.db" afterDir="false" />
-    </list>
+    <list default="true" id="51cf480f-b531-47ec-9e4b-9d1a75143592" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,19 +144,6 @@
           <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs</url>
-          <line>73</line>
-          <properties documentPath="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" initialLine="73">
-            <startOffsets>
-              <option value="2102" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2138" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
