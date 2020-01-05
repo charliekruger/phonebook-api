@@ -1,17 +1,14 @@
 using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore.Internal;
 using NUnit.Framework;
-using PhonebookApi.Controllers;
 using PhonebookApi.DataStore;
 using PhonebookApi.DTO;
 
 namespace PhonebookApiTests
 {
-    public class PhonebookControllerTests
+    public class PhonebookDatastoreTests
     {
-        private ContactsController _controller;
+     private PhonebookDataStore _dataStore;
 
         [SetUp]
         public void Setup()
@@ -20,28 +17,27 @@ namespace PhonebookApiTests
 //            context.Database.Migrate();
             context.Database.EnsureCreated();
 
-            _controller = new ContactsController(new PhonebookDataStore(context),
-                new Logger<ContactsController>(new LoggerFactory()));
-            _controller.CleanDb();
+            _dataStore = new PhonebookDataStore(context);
+            _dataStore.CleanDb();
         }
 
         private List<PhonebookEntry> AddItemsForTests()
         {
             var items = TestHelper.GetMockEntries();
 
-            items.ForEach(item => _controller.Post(item));
+            items.ForEach(item => _dataStore.Post(item));
 
             return items;
         }
 
         private List<PhonebookEntry> InitPhonebookEntries()
         {
-            var items = _controller.Get();
+            var items = _dataStore.GetAll();
 
             if (items.Any()) return items;
 
             AddItemsForTests();
-            items = _controller.Get();
+            items = _dataStore.GetAll();
 
             return items;
         }
@@ -51,7 +47,7 @@ namespace PhonebookApiTests
         {
             var items = InitPhonebookEntries();
 
-            var addedItems = _controller.Get();
+            var addedItems = _dataStore.GetAll();
 
             bool allAdded = true;
 
@@ -73,9 +69,9 @@ namespace PhonebookApiTests
 
             var itemToDelete = items[0];
 
-            _controller.Delete(itemToDelete.PhonebookEntryId);
+            _dataStore.Delete(itemToDelete);
 
-            items = _controller.Get();
+            items = _dataStore.GetAll();
             Assert.IsFalse(items.Contains(itemToDelete));
         }
 
@@ -92,13 +88,12 @@ namespace PhonebookApiTests
             itemToUpdate.Name = newName;
             itemToUpdate.Surname = surname;
 
-            _controller.Put(itemToUpdate);
+            _dataStore.Put(itemToUpdate);
 
-            var updatedItem = _controller.Get(itemToUpdate.PhonebookEntryId);
+            var updatedItem = _dataStore.Get(itemToUpdate.PhonebookEntryId);
 
             Assert.IsTrue(updatedItem == itemToUpdate);
         }
-
-        
+   
     }
 }

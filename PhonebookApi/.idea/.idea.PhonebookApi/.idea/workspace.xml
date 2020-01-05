@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51cf480f-b531-47ec-9e4b-9d1a75143592" name="Default Changelist" comment="" />
+    <list default="true" id="51cf480f-b531-47ec-9e4b-9d1a75143592" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/PhonebookApi/phonebook.db" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApi/phonebook.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +36,8 @@
     <setting file="file://$PROJECT_DIR$/PhonebookApi/Migrations/20191213132007_InitialCreate.Designer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E0B9B60F-4CEC-4670-980B-0976EE4D34EA/37/5c23dd25/ILogger`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/PhonebookApi/Migrations/20191213132007_InitialCreate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApiTests/PhonebookDatastoreTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PhonebookApiTests/TestHelper.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -49,15 +54,21 @@
         <option value="$PROJECT_DIR$/PhonebookApi/DTO/PhonebookContext.cs" />
         <option value="$PROJECT_DIR$/PhonebookApiTests/UnitTest1.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Startup.cs" />
-        <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Interfaces/IPhonebookDataStore.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookDatastore.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApiTests/TestHelpers.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApiTests/TestHelper.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookDatastoreTests.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1Uq0TryRe1gFHCDyCtIsiig4DuN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />

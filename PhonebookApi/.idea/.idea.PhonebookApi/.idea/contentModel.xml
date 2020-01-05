@@ -60,6 +60,8 @@
         </e>
         <e p="PhonebookApiTests.csproj" t="IncludeRecursive" />
         <e p="PhonebookControllerTests.cs" t="Include" />
+        <e p="PhonebookDatastoreTests.cs" t="Include" />
+        <e p="TestHelper.cs" t="Include" />
       </e>
     </e>
     <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
