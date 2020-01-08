@@ -32,7 +32,8 @@ namespace PhonebookApi.Controllers
         /// Add a new entry
         /// </summary>
         /// <param name="entry"></param>
-        /// <returns></returns>
+        /// <returns>OkResult</returns>
+        /// <returns>BadRequestResult</returns>
         [HttpPost]
         public ActionResult Post([FromBody] PhonebookEntry entry)
         {
@@ -59,6 +60,7 @@ namespace PhonebookApi.Controllers
         /// </summary>
         /// <param name="entry"></param>
         /// <returns>ActionResult with PhonebookEntry</returns>
+        /// <returns>BadRequestResult</returns>
         [HttpPut]
         public ActionResult<PhonebookEntry> Put([FromBody] PhonebookEntry entry)
         {
@@ -83,7 +85,7 @@ namespace PhonebookApi.Controllers
         /// <summary>
         /// Get all entries
         /// </summary>
-        /// <returns></returns>
+        /// <returns>OkResult with List of PhonebookEntry</returns>
         [HttpGet]
         public ActionResult<List<PhonebookEntry>> Get()
         {
@@ -104,7 +106,9 @@ namespace PhonebookApi.Controllers
         /// Delete an entry
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>OkResult</returns>
+        /// <returns>NotFoundResult</returns>
+        /// <returns>BadRequestResult</returns>
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
@@ -139,7 +143,9 @@ namespace PhonebookApi.Controllers
         /// Get a specific entry
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>ActionResult with PhonebookEntry</returns>
+        /// <returns>BadRequestResult</returns>
+        /// <returns>NotFoundResult</returns>
         [HttpGet("{id}")]
         public ActionResult<PhonebookEntry> Get(int id)
         {
