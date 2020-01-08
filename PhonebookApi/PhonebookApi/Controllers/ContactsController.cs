@@ -1,9 +1,8 @@
+using System;
 using System.Collections.Generic;
-using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PhonebookApi.DTO;
-using Unity;
 
 namespace PhonebookApi.Controllers
 {
@@ -15,8 +14,8 @@ namespace PhonebookApi.Controllers
     public class ContactsController
     {
         private readonly ILogger<ContactsController> _logger;
-        private readonly IPhonebookDataStore _dataStore; 
-        
+        private readonly IPhonebookDataStore _dataStore;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -26,17 +25,26 @@ namespace PhonebookApi.Controllers
             _dataStore = dataStore;
             _logger = logger;
         }
-        
+
         /// <summary>
         /// Add a new entry
         /// </summary>
         /// <param name="entry"></param>
         /// <returns></returns>
         [Microsoft.AspNetCore.Mvc.HttpPost]
-        public ActionResult Post([Microsoft.AspNetCore.Mvc.FromBody]PhonebookEntry entry)
+        public ActionResult Post([Microsoft.AspNetCore.Mvc.FromBody] PhonebookEntry entry)
         {
-            var result = _dataStore.Post(entry);
-            return new OkObjectResult(result);
+            try
+            {
+                var result = _dataStore.Post(entry);
+                return new OkObjectResult(result);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                _logger.LogError(e, "Error on Post", entry);
+                throw;
+            }
         }
 
         /// <summary>
@@ -45,20 +53,39 @@ namespace PhonebookApi.Controllers
         /// <param name="entry"></param>
         /// <returns></returns>
         [Microsoft.AspNetCore.Mvc.HttpPut]
-        public ActionResult Put([Microsoft.AspNetCore.Mvc.FromBody] PhonebookEntry entry)
+        public ActionResult<PhonebookEntry> Put([Microsoft.AspNetCore.Mvc.FromBody] PhonebookEntry entry)
         {
-            var result = _dataStore.Put(entry);
-            return new OkObjectResult(result);
-        }    
+            try
+            {
+                var result = _dataStore.Put(entry);
+                return result;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error on Put", entry);
+                Console.WriteLine(e);
+                throw;
+            }
+        }
 
         /// <summary>
         /// Get all entries
         /// </summary>
         /// <returns></returns>
         [Microsoft.AspNetCore.Mvc.HttpGet]
-        public List<PhonebookEntry> Get()
+        public ActionResult<List<PhonebookEntry>> Get()
         {
-            return _dataStore.GetAll();
+            try
+            {
+                var items = _dataStore.GetAll();
+                return items;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error on Get");
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         /// <summary>
@@ -69,20 +96,48 @@ namespace PhonebookApi.Controllers
         [Microsoft.AspNetCore.Mvc.HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var item = Get(id);
-            _dataStore.Delete(item);
-            return new OkResult();
+            try
+            {
+                var item = Get(id);
+                if (item != null)
+                {
+                    _dataStore.Delete(item.Value);
+                }
+                else
+                {
+                    return new NotFoundResult();
+                }
+
+                return new OkResult();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error on Delete", id);
+                Console.WriteLine(e);
+                throw;
+            }
         }
-        
+
         /// <summary>
         /// Get a specific entry
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [Microsoft.AspNetCore.Mvc.HttpGet("{id}")]
-        public PhonebookEntry Get(int id)
+        public ActionResult<PhonebookEntry> Get(int id)
         {
-            return _dataStore.Get(id);
+            try
+            {
+                var getResult = _dataStore.Get(id);
+
+                return getResult != null ? new ActionResult<PhonebookEntry>(getResult) : new NotFoundResult();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error on Get", id);
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         /// <summary>
@@ -95,4 +150,4 @@ namespace PhonebookApi.Controllers
             _dataStore.CleanDb();
         }
     }
-} 
+}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using PhonebookApi.DTO;
@@ -11,6 +12,11 @@ namespace PhonebookApi.DataStore
     {
         private readonly PhonebookContext _context;
 
+        public PhonebookDataStore()
+        {
+            
+        }
+        
         /// <summary>
         /// Constructor
         /// </summary>
@@ -26,17 +32,25 @@ namespace PhonebookApi.DataStore
         /// <returns>List of PhonebookEntry</returns>
         public List<PhonebookEntry> GetAll()
         {
-            var items = _context.PhonebookEntries.ToList();
-
-            items.ForEach(i =>
+            try
             {
-                var details = _context.ContactDetails.Where(d => d.PhonebookEntryId == i.PhonebookEntryId).ToList();
-                details.ForEach(d => { d.PhonebookEntry = null; });
+                var items = _context?.PhonebookEntries.ToList();
 
-                i.ContactDetails = details;
-            });
+                items?.ForEach(i =>
+                {
+                    var details = _context?.ContactDetails.Where(d => d.PhonebookEntryId == i.PhonebookEntryId).ToList();
+                    details?.ForEach(d => { d.PhonebookEntry = null; });
 
-            return items;
+                    i.ContactDetails = details;
+                });
+
+                return items;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         /// <summary>
@@ -46,13 +60,24 @@ namespace PhonebookApi.DataStore
         /// <returns>PhonebookEntry</returns>
         public PhonebookEntry Get(int id)
         {
-            var item = _context.PhonebookEntries.Find(id);
+            try
+            {
+                var item = _context?.PhonebookEntries.Find(id);
 
-            var details = _context.ContactDetails.Where(d => d.PhonebookEntryId == item.PhonebookEntryId).ToList();
-            details.ForEach(d => { d.PhonebookEntry = null; });
-            item.ContactDetails = details;
+                var details = _context?.ContactDetails.Where(d => d.PhonebookEntryId == item.PhonebookEntryId).ToList();
+                details?.ForEach(d => { d.PhonebookEntry = null; });
+                if (item != null)
+                {
+                    item.ContactDetails = details;
+                }
 
-            return item;
+                return item;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         /// <summary>
@@ -61,8 +86,16 @@ namespace PhonebookApi.DataStore
         /// <param name="entry"></param>
         public void Delete(PhonebookEntry entry)
         {
-            _context.Remove(entry);
-            Done();
+            try
+            {
+                _context?.Remove(entry);
+                Done();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         /// <summary>
@@ -71,34 +104,48 @@ namespace PhonebookApi.DataStore
         /// <param name="entry"></param>
         public PhonebookEntry Put(PhonebookEntry entry)
         {
-            var result = _context.Update(entry);
+            try
+            {
+                var result = _context?.Update(entry);
 
-            var detailsForEntry =
-                _context.ContactDetails.Where(c => c.PhonebookEntryId == result.Entity.PhonebookEntryId);
-            var ids = result.Entity.ContactDetails.Select(d => d.ContactDetailId).ToList();
-            if (!ids.Any())
-            {
-                _context.ContactDetails.RemoveRange(detailsForEntry);
-                Done();
-            }
-            else
-            {
-                foreach (var d in detailsForEntry)
+                var detailsForEntry =
+                    _context?.ContactDetails.Where(c => c.PhonebookEntryId == result.Entity.PhonebookEntryId);
+                var ids = result?.Entity.ContactDetails.Select(d => d.ContactDetailId).ToList();
+                if (ids != null && !ids.Any())
                 {
-                    if (ids.Contains(d.ContactDetailId)) continue;
-                    _context.ContactDetails.Remove(d);
+                    _context?.ContactDetails.RemoveRange(detailsForEntry);
                     Done();
                 }
+                else
+                {
+                    if (detailsForEntry != null)
+                    {
+                        foreach (var d in detailsForEntry)
+                        {
+                            if (ids != null && ids.Contains(d.ContactDetailId)) continue;
+                            _context?.ContactDetails.Remove(d);
+                            Done();
+                        }
+                    }
+                }
+
+                Done();
+
+                if (result == null) return null;
+                
+                foreach (var entityContactDetail in result.Entity.ContactDetails)
+                {
+                    entityContactDetail.PhonebookEntry = null;
+                }
+
+                return result.Entity;
+
             }
-
-            Done();
-
-            foreach (var entityContactDetail in result.Entity.ContactDetails)
+            catch (Exception e)
             {
-                entityContactDetail.PhonebookEntry = null;
+                Console.WriteLine(e);
+                throw;
             }
-
-            return result.Entity;
         }
 
         /// <summary>
@@ -107,14 +154,25 @@ namespace PhonebookApi.DataStore
         /// <param name="entry"></param>
         public PhonebookEntry Post(PhonebookEntry entry)
         {
-            var result = _context.PhonebookEntries.Add(entry);
-            Done();
-            foreach (var entityContactDetail in result.Entity.ContactDetails)
+            try
             {
-                entityContactDetail.PhonebookEntry = null;
+                var result = _context?.PhonebookEntries.Add(entry);
+                Done();
+                
+                if (result?.Entity.ContactDetails == null) return result?.Entity;
+                
+                foreach (var entityContactDetail in result?.Entity.ContactDetails)
+                {
+                    entityContactDetail.PhonebookEntry = null;
+                }
+                
+                return result?.Entity;
             }
-
-            return result.Entity;
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         /// <summary>
@@ -123,7 +181,15 @@ namespace PhonebookApi.DataStore
         /// <returns></returns>
         private List<PhonebookEntry> GetAllEntries()
         {
-            return _context.PhonebookEntries.ToList();
+            try
+            {
+                return _context?.PhonebookEntries.ToList();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         /// <summary>
@@ -131,7 +197,15 @@ namespace PhonebookApi.DataStore
         /// </summary>
         private void Done()
         {
-            _context.SaveChanges();
+            try
+            {
+                _context?.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         /// <summary>
@@ -140,8 +214,16 @@ namespace PhonebookApi.DataStore
         /// </summary>
         public void CleanDb()
         {
-            _context.PhonebookEntries.RemoveRange(_context.PhonebookEntries);
-            Done();
+            try
+            {
+                _context?.PhonebookEntries.RemoveRange(_context?.PhonebookEntries);
+                Done();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

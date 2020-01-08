@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Moq;
 using NUnit.Framework;
 using PhonebookApi.Controllers;
 using PhonebookApi.DataStore;
@@ -17,7 +19,6 @@ namespace PhonebookApiTests
         public void Setup()
         {
             var context = new PhonebookContext();
-//            context.Database.Migrate();
             context.Database.EnsureCreated();
 
             _controller = new ContactsController(new PhonebookDataStore(context),
@@ -36,14 +37,17 @@ namespace PhonebookApiTests
 
         private List<PhonebookEntry> InitPhonebookEntries()
         {
-            var items = _controller.Get();
+            ActionResult<List<PhonebookEntry>> items = _controller.Get();
 
-            if (items.Any()) return items;
+            if (items.Value != null)
+            {
+                if (items.Value.Any()) return items.Value;
+            }
 
             AddItemsForTests();
             items = _controller.Get();
 
-            return items;
+            return items.Value;
         }
 
         [Test]
@@ -55,7 +59,7 @@ namespace PhonebookApiTests
 
             bool allAdded = true;
 
-            addedItems.ForEach(i =>
+            addedItems.Value.ForEach(i =>
             {
                 if (allAdded)
                 {
@@ -75,7 +79,7 @@ namespace PhonebookApiTests
 
             _controller.Delete(itemToDelete.PhonebookEntryId);
 
-            items = _controller.Get();
+            items = _controller.Get().Value;
             Assert.IsFalse(items.Contains(itemToDelete));
         }
 
@@ -96,9 +100,26 @@ namespace PhonebookApiTests
 
             var updatedItem = _controller.Get(itemToUpdate.PhonebookEntryId);
 
-            Assert.IsTrue(updatedItem == itemToUpdate);
+            Assert.IsTrue(updatedItem.Value == itemToUpdate);
         }
 
-        
+        [Test]
+        public void GetReturnsNotFound()
+        {
+            // Arrange
+            var mockRepository = new Mock<PhonebookDataStore>();
+            var mockLogger = new Mock<Logger<ContactsController>>();
+            
+            var controller = new ContactsController(mockRepository.Object,
+                new Logger<ContactsController>(new LoggerFactory()));
+
+//            _controller = new ContactsController(new PhonebookDataStore(mockContext.Object),
+//                new Logger<ContactsController>(new LoggerFactory()));
+
+            // Act
+            var actionResult = controller.Get(10);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(NotFoundResult), actionResult.Result);}
     }
 }
