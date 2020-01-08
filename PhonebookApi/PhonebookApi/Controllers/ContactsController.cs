@@ -38,6 +38,11 @@ namespace PhonebookApi.Controllers
         {
             try
             {
+                if (entry == null)
+                {
+                    return new BadRequestResult();
+                }
+                
                 var result = _dataStore.Post(entry);
                 return new OkObjectResult(result);
             }
@@ -59,8 +64,13 @@ namespace PhonebookApi.Controllers
         {
             try
             {
+                if (entry == null)
+                {
+                    return new BadRequestResult();
+                }
+                
                 var result = _dataStore.Put(entry);
-                return result;
+                return new OkObjectResult(result);
             }
             catch (Exception e)
             {
@@ -80,7 +90,7 @@ namespace PhonebookApi.Controllers
             try
             {
                 var items = _dataStore.GetAll();
-                return items;
+                return new OkObjectResult(items);
             }
             catch (Exception e)
             {
@@ -100,6 +110,11 @@ namespace PhonebookApi.Controllers
         {
             try
             {
+                if (id <= 0)
+                {
+                    return new BadRequestResult();
+                }
+                
                 var item = Get(id);
                 if (item.Value != null)
                 {
@@ -130,6 +145,11 @@ namespace PhonebookApi.Controllers
         {
             try
             {
+                if (id <= 0)
+                {
+                    return new BadRequestResult();
+                }
+                
                 var getResult = _dataStore.Get(id);
 
                 return getResult != null ? new ActionResult<PhonebookEntry>(getResult) : new NotFoundResult();

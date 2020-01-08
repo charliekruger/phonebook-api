@@ -61,9 +61,9 @@
         <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookDatastoreTests.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/PhonebookApi.csproj" />
         <option value="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" />
-        <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" />
-        <option value="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/Startup.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" />
       </list>
     </option>
   </component>
@@ -162,32 +162,37 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs</url>
-          <line>119</line>
-          <properties documentPath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" initialLine="124">
+          <line>228</line>
+          <properties documentPath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" initialLine="223">
             <startOffsets>
-              <option value="3098" />
+              <option value="6815" />
             </startOffsets>
             <endOffsets>
-              <option value="3163" />
+              <option value="6834" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="13" />
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs</url>
-          <line>101</line>
-          <properties documentPath="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" initialLine="101">
+          <url>file://$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs</url>
+          <line>105</line>
+          <properties documentPath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" initialLine="101">
             <startOffsets>
-              <option value="2775" />
+              <option value="3081" />
             </startOffsets>
             <endOffsets>
-              <option value="2791" />
+              <option value="3106" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="15" />
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <reveal-manager>
+      <revealed-members>
+        <RevealItemInfo typeName="Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[PhonebookApi.DTO.PhonebookEntry]]" fieldName="Result" />
+      </revealed-members>
+    </reveal-manager>
     <watches-manager>
       <configuration name="RiderUnitTests">
         <watch expression="_context.PhonebookEntries.ToList()" language="C#" custom="RiderImportsList:" />

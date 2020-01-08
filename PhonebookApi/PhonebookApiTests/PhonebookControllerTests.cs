@@ -26,40 +26,18 @@ namespace PhonebookApiTests
             _controller.CleanDb();
         }
 
-        private List<PhonebookEntry> AddItemsForTests()
-        {
-            var items = TestHelper.GetMockEntries();
-
-            items.ForEach(item => _controller.Post(item));
-
-            return items;
-        }
-
-        private List<PhonebookEntry> InitPhonebookEntries()
-        {
-            ActionResult<List<PhonebookEntry>> items = _controller.Get();
-
-            if (items.Value != null)
-            {
-                if (items.Value.Any()) return items.Value;
-            }
-
-            AddItemsForTests();
-            items = _controller.Get();
-
-            return items.Value;
-        }
-
         [Test]
-        public void AddItems()
+        public void Post()
         {
             var items = InitPhonebookEntries();
 
-            var addedItems = _controller.Get();
+            var actionResult = _controller.Get();
 
-            bool allAdded = true;
+            var listItems = ((OkObjectResult) actionResult.Result).Value as List<PhonebookEntry>;
 
-            addedItems.Value.ForEach(i =>
+            var allAdded = true;
+
+            listItems?.ForEach(i =>
             {
                 if (allAdded)
                 {
@@ -68,23 +46,69 @@ namespace PhonebookApiTests
             });
 
             Assert.IsTrue(allAdded);
+            Assert.IsInstanceOf(typeof(OkObjectResult), actionResult.Result);
         }
 
         [Test]
-        public void DeleteItem()
+        public void PostReturnsOk()
         {
-            var items = InitPhonebookEntries();
+            var mockRepository = new Mock<PhonebookDataStore>();
 
-            var itemToDelete = items[0];
+            var controller = new ContactsController(mockRepository.Object,
+                new Logger<ContactsController>(new LoggerFactory()));
 
-            _controller.Delete(itemToDelete.PhonebookEntryId);
+            // Act
+            var actionResult = controller.Post(new PhonebookEntry()
+            {
+                Name = "Test",
+                Surname = "Test",
+                ContactDetails = new List<ContactDetail>
+                {
+                    new ContactDetail
+                    {
+                        Content = "0821231234",
+                        Description = "Description"
+                    }
+                }
+            });
 
-            items = _controller.Get().Value;
-            Assert.IsFalse(items.Contains(itemToDelete));
+            // Assert
+            Assert.IsInstanceOf(typeof(OkObjectResult), actionResult);
         }
 
         [Test]
-        public void UpdateItem()
+        public void PostReturnsBadRequest()
+        {
+            var mockRepository = new Mock<PhonebookDataStore>();
+
+            var controller = new ContactsController(mockRepository.Object,
+                new Logger<ContactsController>(new LoggerFactory()));
+
+            // Act
+            var actionResult = controller.Post(null);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(BadRequestResult), actionResult);
+        }
+
+        [Test]
+        public void DeleteReturnsOk()
+        {
+            var getResult = InitPhonebookEntries();
+
+            var itemToDelete = getResult[0];
+
+            var actionResult = _controller.Delete(itemToDelete.PhonebookEntryId);
+
+            var getActionResult = _controller.Get();
+            var listItems = ((OkObjectResult) getActionResult.Result).Value as List<PhonebookEntry>;
+
+            Assert.IsFalse(listItems.Contains(itemToDelete));
+            Assert.IsInstanceOf(typeof(OkResult), actionResult);
+        }
+
+        [Test]
+        public void PutReturnsOk()
         {
             var newName = "TEST NAME";
             var surname = "TEST SURNAME";
@@ -96,11 +120,27 @@ namespace PhonebookApiTests
             itemToUpdate.Name = newName;
             itemToUpdate.Surname = surname;
 
-            _controller.Put(itemToUpdate);
+            var actionResult = _controller.Put(itemToUpdate);
 
             var updatedItem = _controller.Get(itemToUpdate.PhonebookEntryId);
 
             Assert.IsTrue(updatedItem.Value == itemToUpdate);
+            Assert.IsInstanceOf(typeof(OkObjectResult), actionResult.Result);
+        }
+
+        [Test]
+        public void PutReturnsBadRequest()
+        {
+            var mockRepository = new Mock<PhonebookDataStore>();
+
+            var controller = new ContactsController(mockRepository.Object,
+                new Logger<ContactsController>(new LoggerFactory()));
+
+            // Act
+            var actionResult = controller.Put(null);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(BadRequestResult), actionResult.Result);
         }
 
         [Test]
@@ -119,7 +159,7 @@ namespace PhonebookApiTests
             // Assert
             Assert.IsInstanceOf(typeof(NotFoundResult), actionResult.Result);
         }
-        
+
         [Test]
         public void DeleteReturnsNotFound()
         {
@@ -134,6 +174,63 @@ namespace PhonebookApiTests
 
             // Assert
             Assert.IsInstanceOf(typeof(NotFoundResult), actionResult);
+        }
+
+        [Test]
+        public void GetReturnsBadRequest()
+        {
+            var mockRepository = new Mock<PhonebookDataStore>();
+
+            var controller = new ContactsController(mockRepository.Object,
+                new Logger<ContactsController>(new LoggerFactory()));
+
+            // Act
+            var actionResult = controller.Get(0);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(BadRequestResult), actionResult.Result);
+        }
+
+        [Test]
+        public void DeleteReturnsBadRequest()
+        {
+            var mockRepository = new Mock<PhonebookDataStore>();
+            var controller = new ContactsController(mockRepository.Object,
+                new Logger<ContactsController>(new LoggerFactory()));
+
+            // Act
+            var actionResult = controller.Delete(0);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(BadRequestResult), actionResult);
+        }
+
+        private List<PhonebookEntry> AddItemsForTests()
+        {
+            var items = TestHelper.GetMockEntries();
+
+            items.ForEach(item => _controller.Post(item));
+
+            return items;
+        }
+
+        private List<PhonebookEntry> InitPhonebookEntries()
+        {
+            var actionResult = _controller.Get();
+            var items = (OkObjectResult) actionResult.Result;
+
+            if (items.Value != null)
+            {
+                var entries = (List<PhonebookEntry>) items.Value;
+
+                if (entries.Any()) return entries;
+            }
+
+            AddItemsForTests();
+            var addedActionResult = _controller.Get();
+            var addedItems = (OkObjectResult) addedActionResult.Result;
+
+            return addedItems.Value as List<PhonebookEntry>;
         }
     }
 }
