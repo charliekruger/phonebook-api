@@ -109,17 +109,31 @@ namespace PhonebookApiTests
             // Arrange
             var mockRepository = new Mock<PhonebookDataStore>();
             var mockLogger = new Mock<Logger<ContactsController>>();
-            
+
             var controller = new ContactsController(mockRepository.Object,
                 new Logger<ContactsController>(new LoggerFactory()));
-
-//            _controller = new ContactsController(new PhonebookDataStore(mockContext.Object),
-//                new Logger<ContactsController>(new LoggerFactory()));
 
             // Act
             var actionResult = controller.Get(10);
 
             // Assert
-            Assert.IsInstanceOf(typeof(NotFoundResult), actionResult.Result);}
+            Assert.IsInstanceOf(typeof(NotFoundResult), actionResult.Result);
+        }
+        
+        [Test]
+        public void DeleteReturnsNotFound()
+        {
+            // Arrange
+            var mockRepository = new Mock<PhonebookDataStore>();
+
+            var controller = new ContactsController(mockRepository.Object,
+                new Logger<ContactsController>(new LoggerFactory()));
+
+            // Act
+            var actionResult = controller.Delete(10);
+
+            // Assert
+            Assert.IsInstanceOf(typeof(NotFoundResult), actionResult);
+        }
     }
 }

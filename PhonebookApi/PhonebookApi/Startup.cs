@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -11,14 +12,15 @@ namespace PhonebookApi
 {
     public class Startup
     {
-        
+        public const string AllowSpecificOrigins = "_allowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
         public static IWebHostEnvironment Environment { get; set; }
-        
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -26,11 +28,22 @@ namespace PhonebookApi
         {
             services.AddScoped<PhonebookContext>();
             services.AddScoped<IPhonebookDataStore, PhonebookDataStore>();
-            
+
             services.AddControllers();
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo {Title = "Phonebook Api", Version = "v1"});
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
             });
         }
 
@@ -49,9 +62,11 @@ namespace PhonebookApi
 
             app.UseRouting();
 
+            app.UseCors(AllowSpecificOrigins);
+
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
+            app.UseEndpoints(endpoints => endpoints.MapControllers().RequireCors(AllowSpecificOrigins));
         }
     }
 }

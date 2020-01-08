@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PhonebookApi.DTO;
@@ -11,6 +12,7 @@ namespace PhonebookApi.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
+    [EnableCors(Startup.AllowSpecificOrigins)]
     public class ContactsController
     {
         private readonly ILogger<ContactsController> _logger;
@@ -31,8 +33,8 @@ namespace PhonebookApi.Controllers
         /// </summary>
         /// <param name="entry"></param>
         /// <returns></returns>
-        [Microsoft.AspNetCore.Mvc.HttpPost]
-        public ActionResult Post([Microsoft.AspNetCore.Mvc.FromBody] PhonebookEntry entry)
+        [HttpPost]
+        public ActionResult Post([FromBody] PhonebookEntry entry)
         {
             try
             {
@@ -51,9 +53,9 @@ namespace PhonebookApi.Controllers
         /// Update an entry
         /// </summary>
         /// <param name="entry"></param>
-        /// <returns></returns>
-        [Microsoft.AspNetCore.Mvc.HttpPut]
-        public ActionResult<PhonebookEntry> Put([Microsoft.AspNetCore.Mvc.FromBody] PhonebookEntry entry)
+        /// <returns>ActionResult with PhonebookEntry</returns>
+        [HttpPut]
+        public ActionResult<PhonebookEntry> Put([FromBody] PhonebookEntry entry)
         {
             try
             {
@@ -72,7 +74,7 @@ namespace PhonebookApi.Controllers
         /// Get all entries
         /// </summary>
         /// <returns></returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet]
+        [HttpGet]
         public ActionResult<List<PhonebookEntry>> Get()
         {
             try
@@ -93,13 +95,13 @@ namespace PhonebookApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Microsoft.AspNetCore.Mvc.HttpDelete("{id}")]
+        [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
             try
             {
                 var item = Get(id);
-                if (item != null)
+                if (item.Value != null)
                 {
                     _dataStore.Delete(item.Value);
                 }
@@ -123,7 +125,7 @@ namespace PhonebookApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Microsoft.AspNetCore.Mvc.HttpGet("{id}")]
+        [HttpGet("{id}")]
         public ActionResult<PhonebookEntry> Get(int id)
         {
             try
@@ -144,7 +146,7 @@ namespace PhonebookApi.Controllers
         /// Clean the DB
         /// Testing method, not exposed
         /// </summary>
-        [Microsoft.AspNetCore.Mvc.NonAction]
+        [NonAction]
         public void CleanDb()
         {
             _dataStore.CleanDb();

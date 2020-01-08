@@ -60,10 +60,10 @@
         <option value="$PROJECT_DIR$/PhonebookApiTests/TestHelper.cs" />
         <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookDatastoreTests.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/PhonebookApi.csproj" />
-        <option value="$PROJECT_DIR$/PhonebookApi/Startup.cs" />
-        <option value="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" />
         <option value="$PROJECT_DIR$/PhonebookApi/DataStore/PhonebookDataStore.cs" />
         <option value="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" />
+        <option value="$PROJECT_DIR$/PhonebookApi/Startup.cs" />
       </list>
     </option>
   </component>
@@ -76,6 +76,7 @@
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
@@ -161,16 +162,29 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs</url>
-          <line>122</line>
+          <line>119</line>
           <properties documentPath="$PROJECT_DIR$/PhonebookApiTests/PhonebookControllerTests.cs" initialLine="124">
             <startOffsets>
-              <option value="3278" />
+              <option value="3098" />
             </startOffsets>
             <endOffsets>
-              <option value="3343" />
+              <option value="3163" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs</url>
+          <line>101</line>
+          <properties documentPath="$PROJECT_DIR$/PhonebookApi/Controllers/ContactsController.cs" initialLine="101">
+            <startOffsets>
+              <option value="2775" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2791" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
