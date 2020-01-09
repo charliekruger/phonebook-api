@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -103,7 +102,7 @@ namespace PhonebookApiTests
             var getActionResult = _controller.Get();
             var listItems = ((OkObjectResult) getActionResult.Result).Value as List<PhonebookEntry>;
 
-            Assert.IsFalse(listItems.Contains(itemToDelete));
+            Assert.IsFalse(listItems != null && listItems.Contains(itemToDelete));
             Assert.IsInstanceOf(typeof(OkResult), actionResult);
         }
 
@@ -148,7 +147,6 @@ namespace PhonebookApiTests
         {
             // Arrange
             var mockRepository = new Mock<PhonebookDataStore>();
-            var mockLogger = new Mock<Logger<ContactsController>>();
 
             var controller = new ContactsController(mockRepository.Object,
                 new Logger<ContactsController>(new LoggerFactory()));
@@ -205,13 +203,11 @@ namespace PhonebookApiTests
             Assert.IsInstanceOf(typeof(BadRequestResult), actionResult);
         }
 
-        private List<PhonebookEntry> AddItemsForTests()
+        private void AddItemsForTests()
         {
             var items = TestHelper.GetMockEntries();
 
             items.ForEach(item => _controller.Post(item));
-
-            return items;
         }
 
         private List<PhonebookEntry> InitPhonebookEntries()

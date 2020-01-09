@@ -14,7 +14,6 @@ namespace PhonebookApiTests
         public void Setup()
         {
             var context = new PhonebookContext();
-//            context.Database.Migrate();
             context.Database.EnsureCreated();
 
             _dataStore = new PhonebookDataStore(context);
@@ -64,9 +63,8 @@ namespace PhonebookApiTests
         public void DeleteItem()
         {
             var items = InitPhonebookEntries();
-
             var itemToDelete = items[0];
-
+            
             _dataStore.Delete(itemToDelete);
 
             items = _dataStore.GetAll();
@@ -76,8 +74,8 @@ namespace PhonebookApiTests
         [Test]
         public void UpdateItem()
         {
-            var newName = "TEST NAME";
-            var surname = "TEST SURNAME";
+            const string newName = "TEST NAME";
+            const string surname = "TEST SURNAME";
 
             var items = InitPhonebookEntries();
 
@@ -92,6 +90,5 @@ namespace PhonebookApiTests
 
             Assert.IsTrue(updatedItem == itemToUpdate);
         }
-   
     }
 }
