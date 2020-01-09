@@ -14,9 +14,8 @@ namespace PhonebookApi.DataStore
 
         public PhonebookDataStore()
         {
-            
         }
-        
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -38,8 +37,8 @@ namespace PhonebookApi.DataStore
 
                 items?.ForEach(i =>
                 {
-                    var details = _context?.ContactDetails.Where(d => d.PhonebookEntryId == i.PhonebookEntryId).ToList();
-                    details?.ForEach(d => { d.PhonebookEntry = null; });
+                    var details = _context?.ContactDetails.Where(d => d.PhonebookEntryId == i.PhonebookEntryId)
+                        .ToList();
 
                     i.ContactDetails = details;
                 });
@@ -65,7 +64,7 @@ namespace PhonebookApi.DataStore
                 var item = _context?.PhonebookEntries.Find(id);
 
                 var details = _context?.ContactDetails.Where(d => d.PhonebookEntryId == item.PhonebookEntryId).ToList();
-                details?.ForEach(d => { d.PhonebookEntry = null; });
+
                 if (item != null)
                 {
                     item.ContactDetails = details;
@@ -89,7 +88,7 @@ namespace PhonebookApi.DataStore
             try
             {
                 _context?.Remove(entry);
-                Done();
+                SaveDbChanges();
             }
             catch (Exception e)
             {
@@ -114,7 +113,7 @@ namespace PhonebookApi.DataStore
                 if (ids != null && !ids.Any())
                 {
                     _context?.ContactDetails.RemoveRange(detailsForEntry);
-                    Done();
+                    SaveDbChanges();
                 }
                 else
                 {
@@ -124,22 +123,14 @@ namespace PhonebookApi.DataStore
                         {
                             if (ids != null && ids.Contains(d.ContactDetailId)) continue;
                             _context?.ContactDetails.Remove(d);
-                            Done();
+                            SaveDbChanges();
                         }
                     }
                 }
 
-                Done();
+                SaveDbChanges();
 
-                if (result == null) return null;
-                
-                foreach (var entityContactDetail in result.Entity.ContactDetails)
-                {
-                    entityContactDetail.PhonebookEntry = null;
-                }
-
-                return result.Entity;
-
+                return result?.Entity;
             }
             catch (Exception e)
             {
@@ -157,33 +148,9 @@ namespace PhonebookApi.DataStore
             try
             {
                 var result = _context?.PhonebookEntries.Add(entry);
-                Done();
-                
-                if (result?.Entity.ContactDetails == null) return result?.Entity;
-                
-                foreach (var entityContactDetail in result?.Entity.ContactDetails)
-                {
-                    entityContactDetail.PhonebookEntry = null;
-                }
-                
-                return result?.Entity;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
+                SaveDbChanges();
 
-        /// <summary>
-        /// Get all phonebook entries
-        /// </summary>
-        /// <returns></returns>
-        private List<PhonebookEntry> GetAllEntries()
-        {
-            try
-            {
-                return _context?.PhonebookEntries.ToList();
+                return result?.Entity;
             }
             catch (Exception e)
             {
@@ -195,7 +162,7 @@ namespace PhonebookApi.DataStore
         /// <summary>
         /// Save changes to db
         /// </summary>
-        private void Done()
+        private void SaveDbChanges()
         {
             try
             {
@@ -217,7 +184,7 @@ namespace PhonebookApi.DataStore
             try
             {
                 _context?.PhonebookEntries.RemoveRange(_context?.PhonebookEntries);
-                Done();
+                SaveDbChanges();
             }
             catch (Exception e)
             {

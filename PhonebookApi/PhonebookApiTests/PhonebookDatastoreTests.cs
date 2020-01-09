@@ -21,13 +21,11 @@ namespace PhonebookApiTests
             _dataStore.CleanDb();
         }
 
-        private List<PhonebookEntry> AddItemsForTests()
+        private void AddItemsForTests()
         {
             var items = TestHelper.GetMockEntries();
 
             items.ForEach(item => _dataStore.Post(item));
-
-            return items;
         }
 
         private List<PhonebookEntry> InitPhonebookEntries()
@@ -49,7 +47,7 @@ namespace PhonebookApiTests
 
             var addedItems = _dataStore.GetAll();
 
-            bool allAdded = true;
+            var allAdded = true;
 
             addedItems.ForEach(i =>
             {
