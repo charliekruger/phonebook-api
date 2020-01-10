@@ -27,6 +27,7 @@
         </e>
         <e p="Interfaces" t="Include">
           <e p="IPhonebookDataStore.cs" t="Include" />
+          <e p="IPhonebookService.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
           <e p="20191213132007_InitialCreate.cs" t="Include" />
@@ -46,6 +47,9 @@
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />
         </e>
+        <e p="Services" t="Include">
+          <e p="PhonebookService.cs" t="Include" />
+        </e>
         <e p="Startup.cs" t="Include" />
       </e>
       <e p="PhonebookApi.sln" t="IncludeFlat" />
@@ -61,6 +65,7 @@
         <e p="PhonebookApiTests.csproj" t="IncludeRecursive" />
         <e p="PhonebookControllerTests.cs" t="Include" />
         <e p="PhonebookDatastoreTests.cs" t="Include" />
+        <e p="PhonebookServiceTests.cs" t="Include" />
         <e p="TestHelper.cs" t="Include" />
       </e>
     </e>

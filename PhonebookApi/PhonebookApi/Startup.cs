@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PhonebookApi.DataStore;
 using PhonebookApi.DTO;
+using PhonebookApi.Interfaces;
+using PhonebookApi.Services;
 
 namespace PhonebookApi
 {
@@ -27,6 +29,7 @@ namespace PhonebookApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<PhonebookContext>();
+            services.AddScoped<IPhonebookService, PhonebookService>();
             services.AddScoped<IPhonebookDataStore, PhonebookDataStore>();
 
             services.AddControllers();

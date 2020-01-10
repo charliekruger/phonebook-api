@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PhonebookApi.DTO;
+using PhonebookApi.Interfaces;
 
 namespace PhonebookApi.Controllers
 {
@@ -16,15 +17,15 @@ namespace PhonebookApi.Controllers
     public class ContactsController
     {
         private readonly ILogger<ContactsController> _logger;
-        private readonly IPhonebookDataStore _dataStore;
+        private readonly IPhonebookService _phonebookService;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="dataStore"></param>
-        public ContactsController(IPhonebookDataStore dataStore, ILogger<ContactsController> logger)
+        /// <param name="phonebookService"></param>
+        public ContactsController(IPhonebookService phonebookService, ILogger<ContactsController> logger)
         {
-            _dataStore = dataStore;
+            _phonebookService = phonebookService;
             _logger = logger;
         }
 
@@ -44,7 +45,7 @@ namespace PhonebookApi.Controllers
                     return new BadRequestResult();
                 }
                 
-                var result = _dataStore.Post(entry);
+                var result = _phonebookService.Post(entry);
                 return new OkObjectResult(result);
             }
             catch (Exception e)
@@ -71,7 +72,7 @@ namespace PhonebookApi.Controllers
                     return new BadRequestResult();
                 }
                 
-                var result = _dataStore.Put(entry);
+                var result = _phonebookService.Put(entry);
                 return new OkObjectResult(result);
             }
             catch (Exception e)
@@ -91,7 +92,7 @@ namespace PhonebookApi.Controllers
         {
             try
             {
-                var items = _dataStore.GetAll();
+                var items = _phonebookService.GetAll();
                 return new OkObjectResult(items);
             }
             catch (Exception e)
@@ -122,7 +123,7 @@ namespace PhonebookApi.Controllers
                 var item = Get(id);
                 if (item.Value != null)
                 {
-                    _dataStore.Delete(item.Value);
+                    _phonebookService.Delete(item.Value);
                 }
                 else
                 {
@@ -156,7 +157,7 @@ namespace PhonebookApi.Controllers
                     return new BadRequestResult();
                 }
                 
-                var getResult = _dataStore.Get(id);
+                var getResult = _phonebookService.Get(id);
 
                 return getResult != null ? new ActionResult<PhonebookEntry>(getResult) : new NotFoundResult();
             }
@@ -175,7 +176,7 @@ namespace PhonebookApi.Controllers
         [NonAction]
         public void CleanDb()
         {
-            _dataStore.CleanDb();
+            _phonebookService.CleanDb();
         }
     }
 }

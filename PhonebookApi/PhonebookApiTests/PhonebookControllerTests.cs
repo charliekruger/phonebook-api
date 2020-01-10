@@ -7,6 +7,7 @@ using NUnit.Framework;
 using PhonebookApi.Controllers;
 using PhonebookApi.DataStore;
 using PhonebookApi.DTO;
+using PhonebookApi.Services;
 
 namespace PhonebookApiTests
 {
@@ -20,8 +21,11 @@ namespace PhonebookApiTests
             var context = new PhonebookContext();
             context.Database.EnsureCreated();
 
-            _controller = new ContactsController(new PhonebookDataStore(context),
-                new Logger<ContactsController>(new LoggerFactory()));
+            var dataStore = new PhonebookDataStore(context);
+            var logger = new Logger<ContactsController>(new LoggerFactory());
+            var phonebookService = new PhonebookService(dataStore, logger);
+
+            _controller = new ContactsController(phonebookService, logger);
             _controller.CleanDb();
         }
 
@@ -51,9 +55,9 @@ namespace PhonebookApiTests
         [Test]
         public void PostReturnsOk()
         {
-            var mockRepository = new Mock<PhonebookDataStore>();
+            var mockService = new Mock<PhonebookService>();
 
-            var controller = new ContactsController(mockRepository.Object,
+            var controller = new ContactsController(mockService.Object,
                 new Logger<ContactsController>(new LoggerFactory()));
 
             // Act
@@ -78,9 +82,9 @@ namespace PhonebookApiTests
         [Test]
         public void PostReturnsBadRequest()
         {
-            var mockRepository = new Mock<PhonebookDataStore>();
+            var mockService = new Mock<PhonebookService>();
 
-            var controller = new ContactsController(mockRepository.Object,
+            var controller = new ContactsController(mockService.Object,
                 new Logger<ContactsController>(new LoggerFactory()));
 
             // Act
@@ -130,9 +134,9 @@ namespace PhonebookApiTests
         [Test]
         public void PutReturnsBadRequest()
         {
-            var mockRepository = new Mock<PhonebookDataStore>();
+            var mockService = new Mock<PhonebookService>();
 
-            var controller = new ContactsController(mockRepository.Object,
+            var controller = new ContactsController(mockService.Object,
                 new Logger<ContactsController>(new LoggerFactory()));
 
             // Act
@@ -146,9 +150,9 @@ namespace PhonebookApiTests
         public void GetReturnsNotFound()
         {
             // Arrange
-            var mockRepository = new Mock<PhonebookDataStore>();
+            var mockService = new Mock<PhonebookService>();
 
-            var controller = new ContactsController(mockRepository.Object,
+            var controller = new ContactsController(mockService.Object,
                 new Logger<ContactsController>(new LoggerFactory()));
 
             // Act
@@ -162,9 +166,9 @@ namespace PhonebookApiTests
         public void DeleteReturnsNotFound()
         {
             // Arrange
-            var mockRepository = new Mock<PhonebookDataStore>();
+            var mockService = new Mock<PhonebookService>();
 
-            var controller = new ContactsController(mockRepository.Object,
+            var controller = new ContactsController(mockService.Object,
                 new Logger<ContactsController>(new LoggerFactory()));
 
             // Act
@@ -177,9 +181,9 @@ namespace PhonebookApiTests
         [Test]
         public void GetReturnsBadRequest()
         {
-            var mockRepository = new Mock<PhonebookDataStore>();
+            var mockService = new Mock<PhonebookService>();
 
-            var controller = new ContactsController(mockRepository.Object,
+            var controller = new ContactsController(mockService.Object,
                 new Logger<ContactsController>(new LoggerFactory()));
 
             // Act
@@ -192,8 +196,8 @@ namespace PhonebookApiTests
         [Test]
         public void DeleteReturnsBadRequest()
         {
-            var mockRepository = new Mock<PhonebookDataStore>();
-            var controller = new ContactsController(mockRepository.Object,
+            var mockService = new Mock<PhonebookService>();
+            var controller = new ContactsController(mockService.Object,
                 new Logger<ContactsController>(new LoggerFactory()));
 
             // Act
